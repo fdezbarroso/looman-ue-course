@@ -1,10 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "TLCharacter.generated.h"
+
+class USpringArmComponent;
+class UCameraComponent;
 
 UCLASS()
 class TLCOURSE_API ATLCharacter : public ACharacter
@@ -16,6 +17,13 @@ public:
 	ATLCharacter();
 
 protected:
+	
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	TObjectPtr<UCameraComponent> CameraComponent;
+	
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	TObjectPtr<USpringArmComponent> SpringArmComponent;
+	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
