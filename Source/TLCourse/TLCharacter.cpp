@@ -1,5 +1,7 @@
 #include "TLCharacter.h"
 
+#include "EnhancedInputComponent.h"
+
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 
@@ -23,6 +25,15 @@ void ATLCharacter::BeginPlay()
 	
 }
 
+void ATLCharacter::Move(const FInputActionValue& InValue)
+{
+	FVector2D InputValue = InValue.Get<FVector2D>();
+	
+	FVector MoveDirection = FVector(InputValue.X, InputValue.Y, 0.0f);
+	
+	AddMovementInput(MoveDirection);
+}
+
 // Called every frame
 void ATLCharacter::Tick(float DeltaTime)
 {
@@ -35,4 +46,7 @@ void ATLCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent);
+	
+	EnhancedInput->BindAction(Input_Move, ETriggerEvent::Triggered, this, &ATLCharacter::Move);
 }
