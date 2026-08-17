@@ -75,3 +75,15 @@ Plugins/**/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# Third-party course content
+/Content/Characters/
+/Content/ControlRig/
+/Content/ExampleContent/
+/Content/LevelPrototyping/
+/Content/ParagonGideon/
+/Content/ParagonMinions/
+/Content/SanderAudio/
+/Content/ShooterGame/
+/Content/tharlevfx_tutorials/
+/Content/Troy/

@@ -1,13 +1,16 @@
 # looman-ue-course
-Following the Tom Looman course from the beginning.
+Following Tom Looman's [Professional Game Development in C++ and Unreal Engine 5](https://tomlooman.com/courses/unrealengine-cpp/) course from the beginning.
 
-## LICENSE
+## External Content
 
-_Required Notice: Copyright Francisco Fernández Barroso._
+This repository does not redistribute any of the external content used by the course, but depends on them.
 
-All personally developed source code in this repository is licensed under [`MIT License`](./LICENSE).
+The project depends on content from Tom Looman's course, which includes Epic Games' content. These assets must be added separately, and need to be placed under the `/Content/` directory.
 
-Third-party assets and code dependencies remain subject to their corresponding licenses.
+Tom Looman's reference course project can be found in the [`UE5.6-CourseProject`](https://github.com/tomlooman/ActionRoguelike/tree/UE5.6-CourseProject) branch of the [`ActionRoguelike`](https://github.com/tomlooman/ActionRoguelike/tree/master) repository.
 
+## License
 
-**Game Assets**: Licensed for use with the Unreal Engine only. Without a custom license you cannot use to create sequels, remasters, or otherwise emulate the original game or use the original game’s trademarks, character names, or other IP to advertise or name your game. (Unreal Engine EULA applies)
+Source code authored by me in this repository is licensed under the [`MIT License`](./LICENSE).
+
+Any third-party code and assets remain subject to their corresponding licenses.
