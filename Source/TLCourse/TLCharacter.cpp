@@ -13,6 +13,7 @@ ATLCharacter::ATLCharacter()
 	
 	SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComp"));
 	SpringArmComponent->SetupAttachment(RootComponent);
+	SpringArmComponent->bUsePawnControlRotation = true;
 	
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 	CameraComponent->SetupAttachment(SpringArmComponent);
@@ -29,9 +30,23 @@ void ATLCharacter::Move(const FInputActionValue& InValue)
 {
 	FVector2D InputValue = InValue.Get<FVector2D>();
 	
-	FVector MoveDirection = FVector(InputValue.X, InputValue.Y, 0.0f);
+	FRotator ControlRot = GetControlRotation();
+	ControlRot.Pitch = 0.0f;
 	
-	AddMovementInput(MoveDirection);
+	// Forward/Back
+	AddMovementInput(ControlRot.Vector(), InputValue.X);
+	
+	// Left/Right
+	FVector RightDirection = ControlRot.RotateVector(FVector::RightVector);
+	AddMovementInput(RightDirection, InputValue.Y);
+}
+
+void ATLCharacter::Look(const FInputActionInstance& InValue)
+{
+	FVector2D InputValue = InValue.GetValue().Get<FVector2D>();
+	
+	AddControllerYawInput(InputValue.X);
+	AddControllerPitchInput(InputValue.Y);
 }
 
 // Called every frame
@@ -49,4 +64,6 @@ void ATLCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	UEnhancedInputComponent* EnhancedInput = Cast<UEnhancedInputComponent>(PlayerInputComponent);
 	
 	EnhancedInput->BindAction(Input_Move, ETriggerEvent::Triggered, this, &ATLCharacter::Move);
+	
+	EnhancedInput->BindAction(Input_Look, ETriggerEvent::Triggered, this, &ATLCharacter::Look);
 }
